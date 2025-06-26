@@ -83,3 +83,83 @@ Create Booking
 ```
 POST /bookings
 ```
+Request Body:
+```
+{
+  "providerId": "1",
+  "customerId": "cus_123",
+  "service": "Pipe Repair",
+  "date": "2024-03-15",
+  "time": "14:00",
+  "location": "Nairobi, Westlands"
+}
+```
+Success Response (201 Created):
+```
+{
+  "id": "book_123",
+  "status": "pending",
+  "paymentRequired": true,
+  "mpesaCheckoutUrl": "/payments/checkout/book_123"
+}
+```
+### 3. Payments
+Initiate M-Pesa Payment
+```
+POST /payments/mpesa
+```
+Request Body:
+```
+{
+  "bookingId": "book_123",
+  "phoneNumber": "254712345678",
+  "amount": 1500
+}
+```
+Success Response (202 Accepted):
+```
+{
+  "status": "initiated",
+  "transactionId": "MPE12345",
+  "message": "Payment request sent to 254712345678"
+}
+```
+## 🛠️ Testing the API
+### 1.Using cURL:
+```bash
+# Get all electricians in Nairobi
+curl -H "x-api-key: your-key" \
+"http://localhost:3000/api/providers?category=electrical&location=Nairobi"
+```
+### 2.Using Postman:
+- Import Postman Collection
+
+- Set environment variables in Postman
+## 📦 Production Deployment
+Docker Setup
+```
+docker build -t fundis-api .
+docker run -p 3000:3000 --env-file .env fundis-api
+```
+Environment Variables
+See .env.example for all required configuration
+## 📜 License
+MIT
+## 📞 Support
+For issues, contact [support@fundis.com](https://www.fundis-equestrian.com/)
+```
+Key features included:
+1. Clear installation instructions
+2. Detailed endpoint documentation
+3. Request/response examples
+4. Authentication requirements
+5. Testing examples
+6. Deployment options
+7. Support information
+
+Would you like me to:
+1. Add more endpoint examples?
+2. Include error response documentation?
+3. Add rate limiting details?
+4. Include sample Postman collection?
+```
