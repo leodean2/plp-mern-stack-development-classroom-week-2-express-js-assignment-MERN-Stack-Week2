@@ -35,9 +35,8 @@ Edit the .env file with your configuration
 ```
 ## 🌐 API Documentation
 ### Base URL
-```
-http://localhost:3000/api
-```
+(http://localhost:3000/api)
+
 ### Authentication
 Include API key in headers:
 ```
